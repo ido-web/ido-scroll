@@ -22,8 +22,24 @@ Vue.use(IdoScroll)
 
 使用 Vue.use() 全局注册后，即可在任意页面直接使用了，而不需另外引入。
 
+如下：container必须为一个固定高度的容器，这个高度可以任意指定
 ```html
-<ido-scroll></ido-scroll>
+<style>
+  html, body {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+  .container{
+    width:100%;
+    height:100%;
+  }
+</style>
+<div class="container">
+  <ido-scroll>
+    ...
+  </ido-scroll>
+</div>
 ```
 
 #### 使用示例
