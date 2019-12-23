@@ -1,0 +1,23 @@
+.ido-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 640px;
+  min-width: 320px;
+  margin: 0 auto;
+}
+
+.ido-container-content {
+  height: 100%;
+  // 给底部tabBar留空间
+}
+
+.ido-header-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+
