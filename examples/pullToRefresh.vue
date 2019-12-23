@@ -27,7 +27,7 @@ export default {
     pullToRefresh(end) {
       setTimeout(() => {
         end()
-      }, 2000)
+      }, 1000)
     },
     getData() {
       return new Promise(resolve => {
@@ -35,7 +35,7 @@ export default {
           let newData = ['新来的数据', '新来的数据', '新来的数据', '新来的数据', '新来的数据', '新来的数据']
           this.mData = this.mData.concat(newData)
           resolve()
-        }, 2000)
+        }, 1000)
       })
     },
     pullToLoadmore(end) {

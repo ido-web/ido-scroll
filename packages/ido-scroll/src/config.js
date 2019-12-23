@@ -6,7 +6,7 @@ export const PULL_DOWN_TEXT_ING = '刷新中...'
 export const PULL_DOWN_TEXT_END = '刷新完成'
 
 // 上拉
-export const PULL_UP_HEIGHT = 50
+export const PULL_UP_HEIGHT = 80
 export const PULL_UP_TEXT_INIT = '上拉加载'
 export const PULL_UP_TEXT_START = '松开加载'
 export const PULL_UP_TEXT_ING = '加载中...'
