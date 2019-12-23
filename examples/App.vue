@@ -1,23 +1,20 @@
 <template>
   <div id="app" class="ido-container">
     <div class="ido-container-content">
-      <div class="home">
-        <ido-scroll pullDown pullUp :data="mData" @onRefresh="pullToRefresh" @onLoadmore="pullToLoadmore" ref="scroll">
-          <div>hahah</div>
-        </ido-scroll>
-      </div>
+        <!-- <basic></basic> -->
+        <pull-refresh></pull-refresh>
     </div>
   </div>
 </template>
 
 <script>
-import IdoScroll from '../packages/ido-scroll/src/ido-scroll'
-// import IdoLoading from '../packages/ido-loading/src/ido-loading'
+// import basic from './basic'
+import PullRefresh from './pullToRefresh'
 export default {
   name: 'app',
   components: {
-    IdoScroll
-    // IdoLoading
+    // basic,
+    PullRefresh
   },
   data() {
     return {
@@ -45,14 +42,4 @@ export default {
 </script>
 
 <style lang="scss" scroped>
-.home {
-  height: 600px;
-  width: 100%;
-  overflow: hidden;
-}
-div {
-  width: 100%;
-  height: 1800px;
-  background-color: skyblue;
-}
 </style>
