@@ -10,6 +10,7 @@ npm i ido-scroll -S
 ## 使用
 
 ido-scroll依赖vue-awesome-swiper@3.1.3，安装本插件的同时也会安装vue-awesome-swiper。
+**注意**：使用ido-scroll最外层要包含一个固定高度得容器
 
 ```javascript
 // 导入组件
@@ -147,6 +148,8 @@ api介绍
 ## 变更记录
 0.1.5
 - 【Initial】初始版本
+
+
 0.1.6
 - [add] 对上拉和下载加载增加插槽,方便使用者个性化定制加载动画。
 - [Bug Fix] 修复update无效得问题
