@@ -1,13 +1,13 @@
 <template>
   <swiper :options="swiperOption" ref="swiper">
     <div class="ido-scroll-pull-down" v-if="pullDown">
-      <ido-loading :text="pullDownText" inline ref="pullDownLoading"></ido-loading>
+      <ido-loading :text="pullDownText" inline ref="pullDownLoading" :status="status"></ido-loading>
     </div>
     <swiper-slide>
       <slot></slot>
     </swiper-slide>
     <div class="ido-scroll-pull-up" v-if="pullUp">
-      <ido-loading :text="pullUpText" inline ref="pullUpLoading"></ido-loading>
+      <ido-loading :text="pullUpText" inline ref="pullUpLoading" :isPull = "false"></ido-loading>
     </div>
     <div class="swiper-scrollbar" v-if="scrollbar" slot="scrollbar"></div>
   </swiper>
@@ -42,6 +42,11 @@ export default {
     pullUp: {
       type: Boolean,
       default: false
+    }
+  },
+  data() {
+    return {
+      status: 'refresh_down'
     }
   },
 
@@ -109,6 +114,7 @@ export default {
         swiper.setTranslate(PULL_DOWN_HEIGHT) // 移动到刷新100的位置
         swiper.params.virtualTranslate = true // 定住不给回弹
         this.$refs.pullDownLoading.setText(PULL_DOWN_TEXT_ING)
+        this.status = 'refresh_loading'
         this.$emit('onRefresh', this.pullDownEnd)
       } else if (swiper.isEnd) {
         // 判断是否到底部
@@ -141,6 +147,7 @@ export default {
       this.pulling = false
 
       const swiper = this.$refs.swiper.swiper
+      this.status = 'refresh_finish'
       this.$refs.pullDownLoading.setText(PULL_DOWN_TEXT_END)
       swiper.params.virtualTranslate = false
       swiper.allowTouchMove = true
@@ -191,8 +198,10 @@ export default {
         // 下拉
         if (swiper.translate > PULL_DOWN_HEIGHT) {
           this.$refs.pullDownLoading.setText(PULL_DOWN_TEXT_START)
+          this.status = 'refresh_down'
         } else {
           this.$refs.pullDownLoading.setText(PULL_DOWN_TEXT_INIT)
+          this.status = 'refresh_up'
         }
       } else if (swiper.isEnd) {
         // 判断是否滚动到底部

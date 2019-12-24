@@ -1,8 +1,8 @@
 <template>
   <div id="app" class="ido-container">
     <div class="ido-container-content">
-        <!-- <basic></basic> -->
-        <pull-refresh></pull-refresh>
+      <!-- <basic></basic> -->
+      <pull-refresh></pull-refresh>
     </div>
   </div>
 </template>
@@ -13,7 +13,7 @@ import PullRefresh from './pullToRefresh'
 export default {
   name: 'app',
   components: {
-    // basic,
+    // basic
     PullRefresh
   },
   data() {
@@ -33,13 +33,8 @@ export default {
         end()
       }, 2000)
     }
-  },
-
-  created() {
-    this.mData.push('1')
   }
 }
 </script>
 
-<style lang="scss" scroped>
-</style>
+<style lang="scss" scroped></style>

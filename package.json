@@ -1,6 +1,6 @@
 {
   "name": "ido-scroll",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": false,
   "description": "基于 Vue 滚动条组件",
   "main": "lib/ido-scroll.umd.min.js",

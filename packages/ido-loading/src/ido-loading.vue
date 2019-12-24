@@ -2,7 +2,8 @@
   <div class="ido-loading" :class="{ 'ido-loading-inline': inline }">
     <div class="ido-loading-indicator" v-if="indicator === 'on'">
       <slot>
-        <img src="./loading.gif" alt="" />
+        <img src="../img/loading.gif" alt="" ref="loading" class="ido-loading-indicator-img"/>
+        <img src="../img/arrow.png" alt="" ref="img" class="ido-loading-indicator-img" v-if="isPull" />
       </slot>
     </div>
 
@@ -11,6 +12,11 @@
 </template>
 
 <script>
+import { prefixStyle } from '../../common/js/dom'
+
+const transform = prefixStyle('transform')
+// const transitionDuration = prefixStyle('transitionDuration')
+
 export default {
   name: 'IdoLoading',
   props: {
@@ -27,6 +33,17 @@ export default {
     },
     // 图标和文字是否在一行显示
     inline: {
+      type: Boolean,
+      default: true
+    },
+    status: {
+      type: String,
+      default: 'refresh_up',
+      validator(value) {
+        return ['refresh_up', 'refresh_down', 'refresh_loading', 'refresh_finish'].indexOf(value) > -1
+      }
+    },
+    isPull: {
       type: Boolean,
       default: true
     }
@@ -46,6 +63,52 @@ export default {
         this.loadingText = 'on'
       } else {
         this.loadingText = 'off'
+      }
+    },
+    showLoading() {
+      this.loading.style.display = 'block'
+      this.img.style.display = 'none'
+    },
+    showArrow() {
+      this.loading.style.display = 'none'
+      this.img.style.display = 'block'
+    },
+    hideAll() {
+      this.loading.style.display = 'none'
+      this.img.style.display = 'none'
+    },
+    init() {
+      this.img = this.$refs.img
+      this.loading = this.$refs.loading
+    }
+  },
+  mounted() {
+    this.init()
+  },
+  watch: {
+    status() {
+      switch (this.status) {
+        case 'refresh_up': {
+          this.showArrow()
+          this.img.style[transform] = 'rotate(0deg)'
+          break
+        }
+        case 'refresh_down': {
+          this.showArrow()
+          this.img.style[transform] = 'rotate(-180deg)'
+          break
+        }
+        case 'refresh_loading': {
+          this.showLoading()
+          break
+        }
+        case 'refresh_finish': {
+          this.hideAll()
+          break
+        }
+        default: {
+          break
+        }
       }
     }
   }
@@ -67,6 +130,12 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+      &-img {
+        width: 25px;
+        height: 25px;
+        display: block;
+        transition: all 0.3s;
+      }
     }
     .ido-loading-indicator ~ .ido-loading-text {
       margin-top: 0px;

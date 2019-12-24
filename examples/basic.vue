@@ -1,9 +1,11 @@
 <template>
   <div class="box">
     <ido-scroll :data="mData">
-      <ul>
+      <ul class="wrap">
         <li class="item" v-for="(item, index) in mData" :key="index">
-          {{ item }}
+          <a :href="item.linkUrl">
+            <img :src="item.picUrl" />
+          </a>
         </li>
       </ul>
     </ido-scroll>
@@ -12,33 +14,51 @@
 
 <script>
 import IdoScroll from '../packages/ido-scroll/src/ido-scroll'
+import { items } from './config'
 export default {
   name: 'basic',
   components: {
     IdoScroll
-    // IdoLoading
   },
   data() {
     return {
-      mData: ['ido-web', 'ido-ui-css', 'iso-vue', 'ido-scroll', 'ido-web', 'ido-ui-css', 'iso-vue', 'ido-scroll']
+      mData: []
     }
+  },
+  methods: {
+    init() {
+      this.mData = items
+    }
+  },
+  created() {
+    this.init()
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .box {
   overflow: hidden;
   width: 100%;
   height: 100%;
 }
-
+.wrap {
+  margin: 10px;
+}
 .item {
-  height: 120px;
+  background-color: #fff;
+  padding: 10px;
+  height: 270px;
   width: 100%;
-  background-color: skyblue;
   line-height: 120px;
   text-align: center;
   border-bottom: 1px solid white;
+  margin-bottom: 5px;
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: blur(1px);
+  }
 }
 </style>
